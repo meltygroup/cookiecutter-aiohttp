@@ -5,7 +5,7 @@
 """
 
 import logging
-import {{ cookiecutter.project_slug }}.logger as logger
+import logger as logger
 
 
 def test_basic_logger(capfd):
