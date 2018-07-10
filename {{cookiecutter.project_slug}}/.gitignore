@@ -1,0 +1,54 @@
+# Editor files
+.vscode/
+*~
+#*#
+
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Intaller logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Tox temporary files
+.tox/
+
+# mypy temporary files
+.mypy_cache/
+
+# pytest & pytest-cov temporary files
+.pytest_cache
+.coverage
+
+# Sphinx documentation
+docs/_build/

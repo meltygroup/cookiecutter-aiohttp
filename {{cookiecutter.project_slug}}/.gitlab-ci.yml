@@ -1,0 +1,27 @@
+image: python:{{ cookiecutter.python_version }}
+
+stages:
+  - lint
+  - deploy
+
+before_script:
+  - curl -O https://bootstrap.pypa.io/get-pip.py
+  - python{{ cookiecutter.python_version }} get-pip.py
+  - python{{ cookiecutter.python_version }} -m pip install detox
+
+lint:
+  stage: lint
+  script:
+    - detox -v
+
+deploy_to_staging:
+  stage: deploy
+  except: master
+  script:
+    - echo 'Put here your deploy script for development.'
+
+deploy_to_production:
+  stage: deploy
+  only: master
+  script:
+    - echo 'Put here your deploy script for production.'
