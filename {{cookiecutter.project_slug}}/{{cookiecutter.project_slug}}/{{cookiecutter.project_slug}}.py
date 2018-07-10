@@ -95,6 +95,3 @@ if __name__ == "__main__":
     CONFIG = toml.load(CONFIG_PATH)
     APP = create_app(LOG, CONFIG)
     web.run_app(APP, host=CONFIG["server"]["host"], port=CONFIG["server"]["port"])
-    LOG.info(
-        "Server running on %s:%d.", CONFIG["server"]["host"], CONFIG["server"]["port"]
-    )
