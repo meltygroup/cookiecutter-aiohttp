@@ -1,27 +1,51 @@
 image: python:{{ cookiecutter.python_version }}
 
 stages:
-  - lint
-  - deploy
+  - test
+  - build
+  - staging
+  - production
 
 before_script:
-  - curl -O https://bootstrap.pypa.io/get-pip.py
-  - python{{ cookiecutter.python_version }} get-pip.py
-  - python{{ cookiecutter.python_version }} -m pip install detox
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - mkdir -p ~/.ssh/tmp/
+  - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
 
-lint:
-  stage: lint
+test:
+  tags:
+    - docker
+  stage: test
   script:
-    - detox -v
+    - python{{ cookiecutter.python_version }} -m pip install --user detox
+    - $HOME/.local/bin/detox -v
 
-deploy_to_staging:
+build:
+  tags:
+    - docker
+  stage: build
+  only:
+    - master
+  script:
+    - python3 setup.py sdist
+  artifacts:
+    paths:
+      - dist/
+
+deploy to staging:
+  tags:
+    - docker
   stage: deploy
-  except: master
+  only:
+    - master
   script:
     - echo 'Put here your deploy script for development.'
 
-deploy_to_production:
+deploy to production:
+  tags:
+    - docker
   stage: deploy
-  only: master
+  only:
+    -master
   script:
     - echo 'Put here your deploy script for production.'
