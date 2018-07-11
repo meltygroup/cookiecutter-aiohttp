@@ -35,7 +35,7 @@ build:
 deploy to staging:
   tags:
     - docker
-  stage: deploy
+  stage: staging
   only:
     - master
   script:
@@ -43,9 +43,10 @@ deploy to staging:
 
 deploy to production:
   tags:
-    - docker
-  stage: deploy
+    - typhon_whitelisted
+  stage: production
   only:
     -master
+  when: manual
   script:
     - echo 'Put here your deploy script for production.'
