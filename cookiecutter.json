@@ -6,6 +6,8 @@
     "project_version": "1.0.0",
     "project_short_description": "My awesome project description o/",
     "python_version": "3.6",
+    "default_server_host": "127.0.0.1",
+    "default_server_port": "8080",
     "has_docs": [
         "n",
         "y"
