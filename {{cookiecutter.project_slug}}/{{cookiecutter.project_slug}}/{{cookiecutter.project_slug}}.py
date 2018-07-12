@@ -8,10 +8,9 @@ from pathlib import Path
 from typing import Union
 import sys
 import argparse
-import logging
 import toml
 from aiohttp import web
-import logger
+
 import views
 
 
@@ -29,14 +28,6 @@ def parse_args(program_args=None) -> argparse.Namespace:
         program_args = sys.argv[1:]
 
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-v",
-        "--verbose",
-        action="store_true",
-        dest="verbose",
-        default=False,
-        help="enable debug logs",
-    )
     parser.add_argument("-c", "--config", dest="config", help="path to the config file")
     return parser.parse_args(program_args)
 
@@ -60,12 +51,10 @@ def locate_config_file(app_name: str, locations=None) -> Union[str, None]:
     return None
 
 
-def create_app(log: logging.Logger, config: dict) -> web.Application:
+def create_app(config: dict) -> web.Application:
     """
         Function who create the aiohttp web application.
 
-        :param log: Instance of the logger to use
-        :type log: logging.Logger
         :param config: Parsed configuration file
         :type config: dict
         :return: Instance of the aiohttp web application
@@ -73,25 +62,28 @@ def create_app(log: logging.Logger, config: dict) -> web.Application:
     """
 
     app = web.Application()
-    app["logger"] = log
     app["config"] = config
     app.router.add_get("/", views.view_slash)
     return app
 
 
-if __name__ == "__main__":
-    LOG = logger.get_logger("{{ cookiecutter.project_slug }}")
-    ARGS = parse_args()
+def main(program_args=None):  # pragma: no cover
+    """
+        Main entry point of the program
 
-    if ARGS.config is not None:
-        CONFIG_PATH = ARGS.config
+        :param program_args: Arguments of the program (defaults to sys.argv)
+        :type program_args: list of str
+    """
+    args = parse_args(program_args)
+
+    if args.config is not None:
+        config_path = args.config
     else:
-        CONFIG_PATH = locate_config_file("{{ cookiecutter.project_slug }}")
-        if CONFIG_PATH is None:
-            LOG.error("Failed to find the configuration file for the app, exiting.")
+        config_path = locate_config_file("{{ cookiecutter.project_slug }}")
+        if config_path is None:
+            print("Failed to find the configuration file for the app, exiting.")
             sys.exit(1)
 
-    LOG.debug("Configuration path is %s.", CONFIG_PATH)
-    CONFIG = toml.load(CONFIG_PATH)
-    APP = create_app(LOG, CONFIG)
-    web.run_app(APP, host=CONFIG["server"]["host"], port=CONFIG["server"]["port"])
+    config = toml.load(config_path)
+    app = create_app(config)
+    web.run_app(app, host=config["server"]["host"], port=config["server"]["port"])

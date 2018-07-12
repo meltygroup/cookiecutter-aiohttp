@@ -1,4 +1,4 @@
-# cookiecutter-meltyaiohttp
+# cookiecutter-aiohttp-project
 
 A cookiecutter template to generate Melty's AioHTTP Python projects.
 

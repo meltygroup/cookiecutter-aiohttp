@@ -5,9 +5,9 @@
 """
 
 from unittest.mock import patch
-import logging
 import sys
 import os
+
 import {{ cookiecutter.project_slug }} as app
 
 
@@ -15,19 +15,17 @@ def test_parse_args():
     """
         Test the argument parser.
     """
-    logging.raiseExceptions = False
     with patch.object(sys, "argv", ['__init__.py']):
         args = app.parse_args()
-        assert args.verbose is False
+        assert args.config is None
 
 
-def test_parse_args_with_verbose():
+def test_parse_args_with_config():
     """
-        Test the argument parser with verbose mode.
+        Test the argument parser with a config file.
     """
-    logging.raiseExceptions = False
-    args = app.parse_args(["-v"])
-    assert args.verbose is True
+    args = app.parse_args(["-c", "super_config.toml"])
+    assert args.config == "super_config.toml"
 
 
 def test_locate_config_file():
