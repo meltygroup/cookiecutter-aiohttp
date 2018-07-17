@@ -2,6 +2,7 @@
 
 A cookiecutter template to generate Melty's AioHTTP Python projects.
 
+
 ## Prerequisites
 
 You need `cookiecutter` to process this template:
@@ -9,6 +10,7 @@ You need `cookiecutter` to process this template:
 ```bash
 python<version> -m pip install cookiecutter
 ```
+
 
 ## Running
 
