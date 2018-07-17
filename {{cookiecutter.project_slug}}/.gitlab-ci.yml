@@ -10,7 +10,12 @@ before_script:
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
   - mkdir -p ~/.ssh/tmp/
+  - echo $SSH_AGENT_PID > ~/.ssh/tmp/agent-$CI_JOB_ID
   - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts'
+
+after_script:
+  - test -s "~/.ssh/tmp/agent-${CI_JOB_ID}" && kill $(cat ~/.ssh/tmp/agent-$CI_JOB_ID)
+  - rm -f "~/.ssh/tmp/agent-${CI_JOB_ID}"
 
 test:
   tags:
