@@ -8,7 +8,7 @@ from unittest.mock import patch
 from pathlib import Path
 import sys
 
-import {{ cookiecutter.project_slug }} as app
+import {{ cookiecutter.project_slug}}.{{ cookiecutter.project_slug }} as app
 
 
 def test_parse_args():

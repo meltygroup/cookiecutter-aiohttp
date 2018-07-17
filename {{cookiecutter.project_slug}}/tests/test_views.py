@@ -7,7 +7,7 @@
 import toml
 import pytest
 
-import {{ cookiecutter.project_slug }} as app
+import {{ cookiecutter.project_slug }}.{{ cookiecutter.project_slug }} as app
 
 
 @pytest.fixture

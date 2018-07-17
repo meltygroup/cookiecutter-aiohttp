@@ -11,7 +11,7 @@ import argparse
 import toml
 from aiohttp import web
 
-import views
+import {{ cookiecutter.project_slug }}.views as views
 
 
 def parse_args(program_args=None) -> argparse.Namespace:
