@@ -51,7 +51,7 @@ deploy to production:
     - typhon_whitelisted
   stage: production
   only:
-    -master
+    - master
   when: manual
   script:
     - echo 'Put here your deploy script for production.'
