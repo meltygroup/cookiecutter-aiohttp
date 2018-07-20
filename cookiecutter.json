@@ -1,0 +1,15 @@
+{
+    "author_name": "TamTam",
+    "author_email": "tamtam@meltygroup.com",
+    "project_name": "Awesome AioHTTP Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+    "project_version": "1.0.0",
+    "project_short_description": "My awesome project description o/",
+    "python_version": "3.6",
+    "default_server_host": "127.0.0.1",
+    "default_server_port": "8080",
+    "has_docs": [
+        "n",
+        "y"
+    ]
+}

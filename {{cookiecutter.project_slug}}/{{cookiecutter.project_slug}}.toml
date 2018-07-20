@@ -1,0 +1,3 @@
+[server]
+host = "{{ cookiecutter.default_server_host }}"
+port = {{ cookiecutter.default_server_port }}
