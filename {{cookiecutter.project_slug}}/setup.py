@@ -28,7 +28,7 @@ setup(
         'toml==0.9.4'
     ],
     extras_require={
-        'test': [
+        'dev': [
             'pytest==3.6.3',
             'pytest-cov==2.5.1',
             'pytest-aiohttp==0.3.0',
