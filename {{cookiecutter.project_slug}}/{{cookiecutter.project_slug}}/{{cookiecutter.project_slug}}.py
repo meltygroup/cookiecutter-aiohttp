@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""
-    Application entry point.
+"""Application entry point.
 """
 
 from pathlib import Path
@@ -15,13 +14,7 @@ import {{ cookiecutter.project_slug }}.views as views
 
 
 def parse_args(program_args=None) -> argparse.Namespace:
-    """
-        Parse command line arguments.
-
-        :param program_args: Arguments of the program
-        :type program_args: list of str
-        :return: The argparse's parsed arguments
-        :rtype: argparse.Namespace
+    """Parse command line arguments.
     """
 
     if program_args is None:
@@ -33,13 +26,7 @@ def parse_args(program_args=None) -> argparse.Namespace:
 
 
 def locate_config_file(app_name: str, locations=None) -> Union[str, None]:
-    """
-        Function who locate the config file between multiple paths.
-
-        :param app_name: Name of the application
-        :type app_name: str
-        :return: Path to the config file or None if not found
-        :rtype: str
+    """Function who locate the config file between multiple paths.
     """
     if locations is None:
         locations = ["./", "~/", "~/.config/", "/etc/"]
@@ -52,13 +39,7 @@ def locate_config_file(app_name: str, locations=None) -> Union[str, None]:
 
 
 def create_app(config: dict) -> web.Application:
-    """
-        Function who create the aiohttp web application.
-
-        :param config: Parsed configuration file
-        :type config: dict
-        :return: Instance of the aiohttp web application
-        :rtype: web.Application
+    """Function who create the aiohttp web application.
     """
 
     app = web.Application()
@@ -68,11 +49,7 @@ def create_app(config: dict) -> web.Application:
 
 
 def main(program_args=None):  # pragma: no cover
-    """
-        Main entry point of the program
-
-        :param program_args: Arguments of the program (defaults to sys.argv)
-        :type program_args: list of str
+    """Main entry point of the program
     """
     args = parse_args(program_args)
 
