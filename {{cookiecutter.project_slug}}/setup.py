@@ -24,18 +24,18 @@ setup(
     version="{{ cookiecutter.project_version }}",
     license="Proprietary",
     zip_safe=False,
-    install_requires=["aiohttp==3.3.2", "toml==0.9.4"],
+    install_requires=["aiohttp==3.4.4", "toml==0.10.0"],
     extras_require={
         "dev": [
-            "pytest==3.6.3",
-            "pytest-cov==2.5.1",
+            "pytest==3.10.0",
+            "pytest-cov==2.6.0",
             "pytest-aiohttp==0.3.0",
-            "flake8==3.5.0",
-            "pylint==1.8.2",
-            "black==18.6b4",
-            "bandit==1.4.0",
-            "mypy==0.610",
-            "detox==0.12",
+            "flake8==3.6.0",
+            "pylint==2.1.1",
+            "black==18.9b0",
+            "bandit==1.5.1",
+            "mypy==0.641",
+            "tox==3.7.0",
         ]
     },
     entry_points={
