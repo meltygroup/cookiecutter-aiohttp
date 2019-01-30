@@ -30,7 +30,6 @@ setup(
             "pytest==3.10.0",
             "pytest-cov==2.6.0",
             "pytest-aiohttp==0.3.0",
-            "flake8==3.6.0",
             "pylint==2.1.1",
             "black==18.9b0",
             "bandit==1.5.1",
