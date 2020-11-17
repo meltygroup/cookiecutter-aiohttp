@@ -1,4 +1,4 @@
-# cookiecutter-aiohttp-project
+# cookiecutter-aiohttp
 
 A cookiecutter template to bootstrap an aioHTTP server.
 
