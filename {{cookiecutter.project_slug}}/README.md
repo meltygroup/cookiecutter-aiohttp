@@ -13,7 +13,9 @@ Dev requirements are in `requirements-dev.txt`.
 
 ## Contributing
 
-To run the server locally, you can use `adev`:
+To run the server locally, after installing dev requirements, and the
+project itself (use `pip install -e .` to also have runtime
+dependencies), you can use `adev`:
 
 ```bash
 $ adev runserver {{ cookiecutter.project_slug }}/{{ cookiecutter.project_slug }}.py
