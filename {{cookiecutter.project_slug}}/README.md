@@ -5,20 +5,26 @@
 
 ## Prerequisites
 
-This project use `python{{ cookiecutter.python_version }}` and `aiohttp` to work and `detox` to be linted.
+This project use `python{{ cookiecutter.python_version }}` and
+`aiohttp` to work and `tox` to be linted.
+
+Dev requirements are in `requirements-dev.txt`.
 
 
-## Building
+## Contributing
 
-By running `detox` you will:
-* Validate the coding style (thanks to a lot of linters)
-{% if cookiecutter.has_docs == "y" %}
-* Build the docs using sphinx
-{% endif %}
+To run the server locally, you can use `adev`:
 
 ```bash
-$ detox
+$ adev runserver {{ cookiecutter.project_slug }}/{{ cookiecutter.project_slug }}.py
 ```
+
+If you need to add a dev requirement, add it in the
+`requirements-dev.in` file, and run `pip-compile requirements-dev.in`
+(`pip-compile` is from the `pip-tools` package).
+
+After commiting something, run `tox -p auto` to check your code and
+run the tests.
 
 
 ## Running

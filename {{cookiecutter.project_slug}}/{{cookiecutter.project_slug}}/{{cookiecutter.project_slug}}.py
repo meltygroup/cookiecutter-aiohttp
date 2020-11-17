@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
-
-"""Application entry point.
+"""{{ cookiecutter.project_name }} entry point.
 """
 
 from pathlib import Path
-from typing import Union
+from typing import Union, Optional, Dict, Any
+import logging
 import sys
 import argparse
 import toml
@@ -38,29 +37,34 @@ def locate_config_file(app_name: str, locations=None) -> Union[str, None]:
     return None
 
 
-def create_app(config: dict) -> web.Application:
-    """Function who create the aiohttp web application.
+def create_app(config: Optional[Dict[str, Any]] = None) -> web.Application:
+    """Build an aiottp server instance to serve {{ cookiecutter.project_name }}.
     """
-
+    if config is None:
+        config = load_config()
     app = web.Application()
     app["config"] = config
     app.router.add_get("/", views.view_slash)
     return app
 
 
-def main(program_args=None):  # pragma: no cover
-    """Main entry point of the program
-    """
-    args = parse_args(program_args)
-
-    if args.config is not None:
-        config_path = args.config
-    else:
+def load_config(config_path=None) -> Dict[str, Any]:
+    """Find a config file and load it."""
+    if config_path is None:  # pragma: no cover
         config_path = locate_config_file("{{ cookiecutter.project_slug }}")
         if config_path is None:
-            print("Failed to find the configuration file for the app, exiting.")
+            print("Failed to find {{ cookiecutter.project_name }}'s configuration.",
+                  "exiting.", file=sys.stderr)
             sys.exit(1)
 
-    config = toml.load(config_path)
+    with open(config_path) as config_file:
+        return toml.load(config_file)
+
+
+def main(program_args=None):  # pragma: no cover
+    """Start a {{ cookiecutter.project_name }} server."""
+    args = parse_args(program_args)
+    logging.basicConfig(level=logging.DEBUG)
+    config = load_config(args.config)
     app = create_app(config)
     web.run_app(app, host=config["server"]["host"], port=config["server"]["port"])

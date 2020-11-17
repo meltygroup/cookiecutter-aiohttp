@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """Module containing the different views of the application.
 """
 

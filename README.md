@@ -1,6 +1,6 @@
 # cookiecutter-aiohttp-project
 
-A cookiecutter template to generate Melty's AioHTTP Python projects.
+A cookiecutter template to bootstrap an aioHTTP server.
 
 
 ## Prerequisites
@@ -8,7 +8,7 @@ A cookiecutter template to generate Melty's AioHTTP Python projects.
 You need `cookiecutter` to process this template:
 
 ```bash
-python<version> -m pip install cookiecutter
+python -m pip install cookiecutter
 ```
 
 
@@ -18,7 +18,7 @@ To create a project using this template, simply run `cookiecutter`:
 
 ```bash
 cd <your_project_folder>
-cookiecutter <path_to_the_template>
+cookiecutter gh:meltygroup/cookiecutter-aiohttp
 ```
 
 You'll have to fill some questions and the magic happens!
